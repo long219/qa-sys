@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ps.mapper.IntegralMapper">
+
+    <!--查询所有问卷标题信息-->
+    <select id="queryAll" resultType="com.ps.domain.QuestionnareVO">
+        SELECT id , name  FROM questionnare_t
+    </select>
+
+    <!--增加问卷标题-->
+    <insert id="addQuestionnare" >
+        insert into questionnare_t (id,name) values ((
+        select nullif(max(id),0)+1 from (select * from questionnare_t) p),#{name})
+    </insert>
+
+    <!--&lt;!&ndash;删除积分&ndash;&gt;
+    <delete id="deleteIntegral" >
+        delete from point_t where id=#{id}
+    </delete>
+
+    &lt;!&ndash;修改积分&ndash;&gt;
+    <update id="updateIntegral" >
+        update point_t set username=#{username},password=#{password} where id=#{id}
+    </update>-->
+
+</mapper>

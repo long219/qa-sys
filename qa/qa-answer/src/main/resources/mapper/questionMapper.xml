@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ps.mapper.QuestionMapper">
+
+
+    <resultMap id="QuestionDetailMap" type="com.ps.domain.QuestionVO">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="reward" property="reward"/>
+        <result column="user_id" property="user_id"/>
+        <collection column="a_id" ofType="com.ps.domain.AnswerVO" property="answerVOList">
+            <result column="a_id" property="id"/>
+            <result column="a_content" property="content"/>
+            <result column="type" property="type"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="queryQuestionDetail" resultMap="QuestionDetailMap">
+        SELECT
+            q.id,
+            q.content,
+            q.reward,
+            q.user_id,
+            a.id AS a_id,
+            a.content AS a_content,
+            a.type
+        FROM
+            question_t q
+            LEFT JOIN answer_t a ON ( q.id = a.question_id )
+        WHERE
+            q.id = #{questionId}
+    </select>
+
+
+    <!--查询所有问题信息-->
+    <select id="queryAll" resultType="com.ps.domain.QuestionVO">
+        select id , content , reward , user_id from question_t
+    </select>
+
+    <!--根据问题id查询问题信息-->
+    <select id="queryById" resultType="com.ps.domain.QuestionVO">
+        select id , content , reward , user_id from question_t where id=#{id}
+    </select>
+
+
+    <!--增加问题-->
+    <insert id="addQuestion" >
+        insert into question_t (id,content,reward,user_id) values ((
+        select nullif(max(id),0)+1 from (select * from question_t) p),#{content},#{reward},#{user_id})
+    </insert>
+
+
+</mapper>

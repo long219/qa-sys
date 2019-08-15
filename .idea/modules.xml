@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/qa/all-sdk/all-sdk.iml" filepath="$PROJECT_DIR$/qa/all-sdk/all-sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qa/h5-api/h5-api.iml" filepath="$PROJECT_DIR$/qa/h5-api/h5-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qa/qa.iml" filepath="$PROJECT_DIR$/qa/qa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qa/qa-answer/qa-answer.iml" filepath="$PROJECT_DIR$/qa/qa-answer/qa-answer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qa/qa-marketing/qa-marketing.iml" filepath="$PROJECT_DIR$/qa/qa-marketing/qa-marketing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qa/qa-member/qa-member.iml" filepath="$PROJECT_DIR$/qa/qa-member/qa-member.iml" />
+    </modules>
+  </component>
+</project>

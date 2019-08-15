@@ -1,0 +1,34 @@
+
+server.port: 8092
+
+#扫描mapper.xml 包
+mybatis:
+  mapper-locations: /mapper/*.xml
+
+
+#数据配置
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/qa_system
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+
+  application:
+    name: qa-answer
+  data:
+    solr:
+      host: http://localhost:8983/solr
+
+dubbo:
+  registry:
+    address: zookeeper://192.168.3.99:2181
+    group: qa
+
+  protocol:
+    name: dubbo
+    port: 8898
+
+  scan:
+    base-packages: com.ps.service.impl
+

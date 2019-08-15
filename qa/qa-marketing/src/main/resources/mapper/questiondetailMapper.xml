@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ps.mapper.QuestiondetailMapper">
+
+    <!--查询文卷内容信息-->
+    <select id="queryAll" resultType="com.ps.domain.QuestiondetailVO">
+        select id,name,questionnare_id from questiondetail_t
+    </select>
+
+
+    <!--增加问卷内容-->
+    <insert id="add">
+        insert into questiondetail_t (id,name,questionnare_id) values ((
+        select nullif(max(id),0)+1 from (select * from questiondetail_t) a),#{name},#{questionnare_id})
+    </insert>
+
+
+    <!--根据问卷id 查询问卷内容-->
+    <select id="queryByQuestionnaireId" resultType="com.ps.domain.QuestiondetailVO">
+         select id,name,questionnare_id from questiondetail_t where questionnare_id=#{questionnaireId}
+    </select>
+
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ps.mapper.CommodityExchangeMapper">
+
+    <!--根据商品id查询商品信息-->
+    <select id="selectCommodityById" resultType="com.ps.domain.CommodityVO">
+      SELECT
+        id,
+        NAME,
+        amount,
+        integral,
+        money,
+        startTime,
+        entTime,
+        version
+      FROM
+	    commodity_t  where id=#{id}
+    </select>
+
+    <!--增加订单-->
+   <!-- <insert id="insertOrder" >
+
+    </insert>-->
+
+   <!-- <update id="inventoryReduction">
+       UPDATE commodity_t
+        SET amount = amount - 1
+
+        WHERE
+            id = #{id}
+    </update>-->
+
+    <update id="inventoryReduction" parameterType="int">
+       UPDATE commodity_t
+        SET amount = amount - 1
+        WHERE
+            id = #{id} and amount > 0
+    </update>
+
+</mapper>

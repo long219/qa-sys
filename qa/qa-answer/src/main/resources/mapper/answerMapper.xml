@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ps.mapper.AnswerMapper">
+
+    <!--查询回答信息-->
+    <select id="queryAll" resultType="com.ps.domain.AnswerVO">
+        select id,content,question_id,user_id, type from answer_t
+    </select>
+
+
+    <!--回答-->
+    <insert id="addAnswer">
+        insert into answer_t (id,content,question_id,user_id,type) values ((
+        select nullif(max(id),0)+1 from (select * from answer_t) a),#{content},#{question_id},#{user_id},#{type})
+    </insert>
+
+
+    <!--采纳问题-->
+    <update id="updateAnswer">
+        update  answer_t  set type="0" where id=#{id}
+    </update>
+
+
+</mapper>
